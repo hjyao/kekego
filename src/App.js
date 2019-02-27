@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
+import Dashboard from './views/Dashboard';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import SimpleTable from './views/SimpleTable';
+
+
 import { simpleAction } from './actions/simpleAction';
 
 class App extends Component {
@@ -11,26 +16,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <pre>
-          {
-            JSON.stringify(this.props)
-          }
-          </pre>
-          <button onClick={this.simpleAction}>Test redux action</button>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <BrowserRouter>
+          <Dashboard>
+            <Switch>
+            <Route exact path="/" render={() =>  
+              <div>
+                <Typography variant="h4" gutterBottom component="h2">
+                Products
+                </Typography>
+                <div className='tableContainer'>
+                  <SimpleTable />
+                </div>
+              </div>} />
+            <Route path="/orders" render={() => <div>orders</div>} />
+            <Route path="/customers" render={() => <div>customers</div>} />
+            <Route path="/reports" render={() => <div>reports</div>} />
+            <Route render={() => <div>products</div>}/>
+            </Switch>
+          </Dashboard>
+        </BrowserRouter>
       </div>
     );
   }
