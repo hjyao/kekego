@@ -138,7 +138,7 @@ class Dashboard extends React.Component {
               noWrap
               className={classes.title}
             >
-              Dashboard
+              KEKEGO
             </Typography>
             </Toolbar>
         </AppBar>
